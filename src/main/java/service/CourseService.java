@@ -27,7 +27,16 @@ public class CourseService {
     public List<Course> getCourses() {
         return this.courses;
     }
-
+ public List<Course> getApprovedCourses() {
+        List<Course> approvedCourses = new ArrayList<>();
+        for (Course course : courses) {
+            if ("APPROVED".equals(course.getApprovalStatus())) {
+                approvedCourses.add(course);
+            }
+        }
+        return approvedCourses;
+    }
+ 
     //course methods
     //method1 : create course
     public Course createCourse(String courseTitle, String courseDescription, String instructorId) {
@@ -194,17 +203,21 @@ public class CourseService {
     }
 
     //enroll student in course
-    public boolean enrollStudent(String courseId, Student student) {
+     public boolean enrollStudent(String courseId, Student student) {
         if (student == null) {
             return false;
         }
 
-        Course course = courses.stream()
-                .filter(c -> courseId.equals(c.getCourseId()))
-                .findFirst()
-                .orElse(null);
+        Course course = null;
+        for (Course c : courses) {
+            if (courseId.equals(c.getCourseId())) {
+                course = c;
+                break;
+            }
+        }
 
-        if (course != null) {
+        
+        if (course != null && "APPROVED".equals(course.getApprovalStatus())) {
             course.addStudent(student);
             db.writeCourses(courses);
             return true;

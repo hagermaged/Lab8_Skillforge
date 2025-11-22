@@ -8,6 +8,16 @@ package model;
  *
  * @author orignal store
  */
-public class Admin {
+public class Admin extends User {
+    public Admin() {
+        super();
+    }
+    
+    public Admin(String username, String email, String passwordHash, String userId) {
+        super(username, email, User.ROLE_ADMIN, userId, passwordHash);
+    }
+    public String getUserType() {
+        return User.ROLE_ADMIN;
+    }
     
 }

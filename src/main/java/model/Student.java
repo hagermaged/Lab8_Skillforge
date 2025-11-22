@@ -22,7 +22,7 @@ public class Student extends User {
     }
     
     public Student(String username, String email, String passwordHash, String userId) {
-        super(username, email, "student", userId, passwordHash);
+        super(username, email, User.ROLE_STUDENT, userId, passwordHash);
         this.enrolledCourses = new ArrayList<>();
         this.progress = 0;
         this.courseProgress = new HashMap<>();
@@ -53,7 +53,7 @@ public class Student extends User {
     }
    
     public String getUserType() {
-        return "student";
+        return User.ROLE_STUDENT;
     }
     
     // Helper methods

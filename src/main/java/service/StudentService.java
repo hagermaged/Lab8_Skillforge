@@ -14,11 +14,21 @@ public class StudentService {
     }
     
     public List<Course> browseAllCourses() {
-        return jsonDb.readCourses();
+        List<Course> allCourses = jsonDb.readCourses();
+        List<Course> approvedCourses = new ArrayList<>();
+        
+        // Return only approved courses
+        for (Course course : allCourses) {
+            if ("APPROVED".equals(course.getApprovalStatus())) {
+                approvedCourses.add(course);
+            }
+        }
+        
+        return approvedCourses;
     }
     
-    public List<Course> getEnrolledCourses(Student s) {
-        List<Course> all = browseAllCourses();
+     public List<Course> getEnrolledCourses(Student s) {
+        List<Course> all = browseAllCourses(); // Now uses filtered approved courses
         List<Course> result = new ArrayList<>();
         
         for(Course c : all) {
@@ -29,7 +39,6 @@ public class StudentService {
         
         return result;
     }
-    
     public boolean enrollInCourse(Student s, Course c) {
         if(!s.getEnrolledCourses().contains(c.getCourseId())) {
             s.enrollInCourse(c.getCourseId());
