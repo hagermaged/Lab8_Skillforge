@@ -20,7 +20,7 @@ public class Instructor extends User {
     }
     public Instructor(String username,String email,String passwordHash,String userId)
     {
-         super(username,email,"instructor",userId,passwordHash);
+         super(username,email,User.ROLE_INSTRUCTOR,userId,passwordHash);
          this.createdCourses= new ArrayList<>();
     }
 
@@ -34,7 +34,7 @@ public class Instructor extends User {
      
     public String getUserType()
     {
-        return "instructor";
+        return User.ROLE_INSTRUCTOR;
     }
     // Helper methods
     public void addCreatedCourse(String courseId) {

@@ -8,17 +8,29 @@ import db.*;
 public class StudentService {
     
     private JsonDatabaseManager jsonDb;
+    private QuizService quizService ;
     
     public StudentService() {
         this.jsonDb = new JsonDatabaseManager();
+        this.quizService =new QuizService();
     }
     
     public List<Course> browseAllCourses() {
-        return jsonDb.readCourses();
+        List<Course> allCourses = jsonDb.readCourses();
+        List<Course> approvedCourses = new ArrayList<>();
+        
+        // Return only approved courses
+        for (Course course : allCourses) {
+            if ("APPROVED".equals(course.getApprovalStatus())) {
+                approvedCourses.add(course);
+            }
+        }
+        
+        return approvedCourses;
     }
     
-    public List<Course> getEnrolledCourses(Student s) {
-        List<Course> all = browseAllCourses();
+     public List<Course> getEnrolledCourses(Student s) {
+        List<Course> all = browseAllCourses(); // Now uses filtered approved courses
         List<Course> result = new ArrayList<>();
         
         for(Course c : all) {
@@ -29,7 +41,6 @@ public class StudentService {
         
         return result;
     }
-    
     public boolean enrollInCourse(Student s, Course c) {
         if(!s.getEnrolledCourses().contains(c.getCourseId())) {
             s.enrollInCourse(c.getCourseId());
@@ -76,6 +87,70 @@ public class StudentService {
         s.completeLesson(c.getCourseId(), l.getLessonId());
         return jsonDb.markLessonAsCompleted(s.getUserId(), c.getCourseId(), l.getLessonId());
     }
+        public boolean completeQuiz(Student student, Course course, Lesson lesson, QuizAttempt quizAttempt) {
+        if (!student.getEnrolledCourses().contains(course.getCourseId())) {
+            return false;
+        }
+        
+        // Mark lesson as completed if quiz passed
+        if (quizAttempt.isPassed()) {
+            lesson.setCompleted(true);
+            student.completeLesson(course.getCourseId(), lesson.getLessonId());
+            
+            // Update in database using the new method
+            return jsonDb.markLessonAsCompletedWithQuiz(student.getUserId(), course.getCourseId(), 
+                                                       lesson.getLessonId(), true);
+        }
+        
+        return false;
+    }
+        public Quiz getQuizForLesson(Course course, Lesson lesson) {
+    if (course == null || lesson == null) {
+        return null;
+    }
+    
+    // Check if student is enrolled in this course
+   // if (!student.getEnrolledCourses().contains(course.getCourseId())) {
+    //     return null;
+     //}
+    
+    // Return the quiz directly from the lesson
+    return lesson.hasQuiz() ? lesson.getQuiz() : null;
+}
+        public boolean canAccessQuiz(Student student, Course course, Lesson lesson) {
+    if (!student.getEnrolledCourses().contains(course.getCourseId())) {
+        return false;
+    }
+    
+    // Check if lesson has a quiz
+    Quiz quiz = getQuizForLesson(course, lesson);
+    if (quiz == null) {
+        return false;
+    }
+    
+    // Check if student can take the quiz (attempt limits)
+    return quizService.canTakeQuiz(student.getUserId(), quiz.getQuizId(), quiz.getMaxAttempts());
+}
+        public QuizAttempt submitQuiz(Student student, Course course, Lesson lesson, List<Integer> answers) {
+    if (!canAccessQuiz(student, course, lesson)) {
+        return null;
+    }
+    
+    Quiz quiz = getQuizForLesson(course, lesson);
+    if (quiz == null) {
+        return null;
+    }
+    
+    // Submit quiz using QuizService
+    QuizAttempt attempt = quizService.submitQuiz(quiz, answers, student.getUserId());
+    
+    // Auto-complete lesson if quiz passed
+    if (attempt.isPassed()) {
+        completeQuiz(student, course, lesson, attempt);
+    }
+    
+    return attempt;
+}
     
     public int getCourseProgressPercentage(Student s, Course c) {
         if (!s.getEnrolledCourses().contains(c.getCourseId())) {

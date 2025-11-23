@@ -14,6 +14,9 @@ public  class User {
     protected String role;
     protected String userId;
     protected String passwordHash;
+    public static final String ROLE_STUDENT = "student";
+    public static final String ROLE_INSTRUCTOR = "instructor";
+    public static final String ROLE_ADMIN = "admin";
     public User(){};//Default constructor//Default constructor
     public User(String username,String email,String role,String userId,String passwordHash)
     {

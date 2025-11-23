@@ -32,4 +32,37 @@ public class IdGenerator {
                 max = Math.max(max, extract(l.getLessonId(), "^L(\\d+)$"));
         return "L" + (max + 1);
     }
+        public static String generateQuizId(List<Course> courses) {
+        int max = 0;
+        for (Course course : courses) {
+            for (Lesson lesson : course.getLessons()) {
+                if (lesson.getQuiz() != null) {
+                    max = Math.max(max, extract(lesson.getQuiz().getQuizId(), "^Q(\\d+)$"));
+                }
+            }
+        }
+        return "Q" + (max + 1);
+    }
+
+    public static String generateQuestionId(List<Course> courses) {
+        int max = 0;
+        for (Course course : courses) {
+            for (Lesson lesson : course.getLessons()) {
+                if (lesson.getQuiz() != null) {
+                    for (Question question : lesson.getQuiz().getQuestions()) {
+                        max = Math.max(max, extract(question.getQuestionId(), "^QU(\\d+)$"));
+                    }
+                }
+            }
+        }
+        return "QU" + (max + 1);
+    }
+
+    public static String generateAttemptId(List<QuizAttempt> attempts) {
+        int max = 0;
+        for (QuizAttempt attempt : attempts) {
+            max = Math.max(max, extract(attempt.getAttemptId(), "^A(\\d+)$"));
+        }
+        return "A" + (max + 1);
+    }
 }

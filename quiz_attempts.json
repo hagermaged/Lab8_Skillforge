@@ -1,0 +1,15 @@
+[
+  {
+    "attemptId": "A1",
+    "studentId": "U4",
+    "quizId": "Q2",
+    "attemptDate": "2025-11-23T22:01:04.6792025",
+    "studentAnswers": [
+      0,
+      0,
+      0
+    ],
+    "score": 30,
+    "passed": true
+  }
+]
