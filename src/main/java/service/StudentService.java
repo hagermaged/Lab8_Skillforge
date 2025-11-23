@@ -110,7 +110,7 @@ public class StudentService {
     }
     
     // Check if student is enrolled in this course
-    // if (!student.getEnrolledCourses().contains(course.getCourseId())) {
+   // if (!student.getEnrolledCourses().contains(course.getCourseId())) {
     //     return null;
      //}
     

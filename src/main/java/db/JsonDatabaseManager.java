@@ -11,7 +11,8 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.file.*;
 import java.util.*;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 public class JsonDatabaseManager {
 
     private final Path usersPath = Paths.get("users.json");
@@ -19,9 +20,24 @@ public class JsonDatabaseManager {
     private final Path quizAttemptsPath = Paths.get("quiz_attempts.json");
     private final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
             .registerTypeAdapter(User.class, new UserDeserializer())
             .create();
 
+     private static class LocalDateTimeAdapter implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
+        private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+        
+        @Override
+        public JsonElement serialize(LocalDateTime date, Type typeOfSrc, JsonSerializationContext context) {
+            return new JsonPrimitive(date.format(formatter));
+        }
+
+        @Override
+        public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                throws JsonParseException {
+            return LocalDateTime.parse(json.getAsString(), formatter);
+        }
+    }
     // Custom deserializer for User polymorphism
     private static class UserDeserializer implements JsonDeserializer<User> {
 

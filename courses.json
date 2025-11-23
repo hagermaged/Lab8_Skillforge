@@ -1,0 +1,171 @@
+[
+  {
+    "courseId": "C1",
+    "courseTitle": "Java Programming",
+    "courseDescription": "Learn Java from basics to advanced",
+    "instructorId": "U2",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L1",
+        "lessonTitle": "Introduction to Java",
+        "content": "Java is a popular programming language...",
+        "resources": [],
+        "isCompleted": false
+      },
+      {
+        "lessonId": "L2",
+        "lessonTitle": "Object-Oriented Programming",
+        "content": "OOP concepts in Java...",
+        "resources": [],
+        "quiz": {
+          "quizId": "Q1",
+          "lessonId": "L2",
+          "questions": [
+            {
+              "questionId": "QU1",
+              "questionText": "How many primitive data types in Java?",
+              "options": [
+                "A. 4",
+                "B. 5",
+                "C. 6",
+                "D. 7"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            },
+            {
+              "questionId": "QU2",
+              "questionText": "What is the blueprint for objects in Java?",
+              "options": [
+                "A. class",
+                "B. interface",
+                "C. object",
+                "D. method"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            },
+            {
+              "questionId": "QU3",
+              "questionText": "Which component executes Java bytecode?",
+              "options": [
+                "A. JVM",
+                "B. JRE",
+                "C. JDK",
+                "D. JAR"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            }
+          ],
+          "passingScore": 20,
+          "maxAttempts": 3
+        },
+        "isCompleted": false
+      }
+    ],
+    "approvalStatus": "APPROVED",
+    "adminReviewerId": "U1",
+    "reviewNotes": "Excellent course content",
+    "reviewDate": "2025-11-23T22:01:04.652501300"
+  },
+  {
+    "courseId": "C2",
+    "courseTitle": "Web Development",
+    "courseDescription": "Learn HTML, CSS, and JavaScript",
+    "instructorId": "U3",
+    "students": [
+      {
+        "enrolledCourses": [
+          "C2"
+        ],
+        "progress": 0,
+        "courseProgress": {
+          "C2": []
+        },
+        "username": "alice_student",
+        "email": "alice@student.com",
+        "role": "student",
+        "userId": "U4",
+        "passwordHash": "learn123"
+      }
+    ],
+    "lessons": [
+      {
+        "lessonId": "L3",
+        "lessonTitle": "HTML Basics",
+        "content": "Introduction to HTML...",
+        "resources": [],
+        "isCompleted": false
+      },
+      {
+        "lessonId": "L4",
+        "lessonTitle": "CSS Styling",
+        "content": "Learn CSS for beautiful websites...",
+        "resources": [],
+        "quiz": {
+          "quizId": "Q2",
+          "lessonId": "L4",
+          "questions": [
+            {
+              "questionId": "QU1",
+              "questionText": "How many primitive data types in Java?",
+              "options": [
+                "A. 4",
+                "B. 5",
+                "C. 6",
+                "D. 7"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            },
+            {
+              "questionId": "QU2",
+              "questionText": "What is the blueprint for objects in Java?",
+              "options": [
+                "A. class",
+                "B. interface",
+                "C. object",
+                "D. method"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            },
+            {
+              "questionId": "QU3",
+              "questionText": "Which component executes Java bytecode?",
+              "options": [
+                "A. JVM",
+                "B. JRE",
+                "C. JDK",
+                "D. JAR"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            }
+          ],
+          "passingScore": 20,
+          "maxAttempts": 3
+        },
+        "isCompleted": true
+      }
+    ],
+    "approvalStatus": "APPROVED",
+    "adminReviewerId": "U1",
+    "reviewNotes": "Good course structure",
+    "reviewDate": "2025-11-23T22:01:04.613920100"
+  },
+  {
+    "courseId": "C3",
+    "courseTitle": "Data Structures",
+    "courseDescription": "Advanced data structures course",
+    "instructorId": "U2",
+    "students": [],
+    "lessons": [],
+    "approvalStatus": "REJECTED",
+    "adminReviewerId": "U1",
+    "reviewNotes": "Course content needs improvement",
+    "reviewDate": "2025-11-23T22:01:04.615615600"
+  }
+]
