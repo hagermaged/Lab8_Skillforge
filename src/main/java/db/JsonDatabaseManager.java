@@ -16,6 +16,7 @@ public class JsonDatabaseManager {
 
     private final Path usersPath = Paths.get("users.json");
     private final Path coursesPath = Paths.get("courses.json");
+    private final Path quizAttemptsPath = Paths.get("quiz_attempts.json");
     private final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .registerTypeAdapter(User.class, new UserDeserializer())
@@ -30,11 +31,14 @@ public class JsonDatabaseManager {
             JsonObject jsonObject = json.getAsJsonObject();
             String role = jsonObject.get("role").getAsString();
 
-            if ("student".equals(role)) {
+            if (User.ROLE_STUDENT.equals(role)) {
                 return context.deserialize(json, Student.class);
-            } else if ("instructor".equals(role)) {
+            } else if (User.ROLE_INSTRUCTOR.equals(role)) {
                 return context.deserialize(json, Instructor.class);
-            } else {
+            } else if(User.ROLE_ADMIN.equals(role)) {
+                  return context.deserialize(json, Admin.class);
+            }
+            else {
                 return context.deserialize(json, User.class);
             }
         }
@@ -162,6 +166,168 @@ public class JsonDatabaseManager {
         if (totalLessons > 0) {
             int overallProgress = (completedLessons * 100) / totalLessons;
             student.setProgress(overallProgress);
+        }
+    }
+        public List<QuizAttempt> readQuizAttempts() {
+        try {
+            if (!Files.exists(quizAttemptsPath)) {
+                return new ArrayList<>();
+            }
+            Reader r = Files.newBufferedReader(quizAttemptsPath);
+            Type type = new TypeToken<List<QuizAttempt>>() {}.getType();
+            return gson.fromJson(r, type);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+
+    public void writeQuizAttempts(List<QuizAttempt> attempts) {
+        try (Writer w = Files.newBufferedWriter(quizAttemptsPath)) {
+            gson.toJson(attempts, w);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean saveQuizAttempt(QuizAttempt attempt) {
+        try {
+            List<QuizAttempt> attempts = readQuizAttempts();
+            attempts.add(attempt);
+            writeQuizAttempts(attempts);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public List<QuizAttempt> getQuizAttemptsByStudent(String studentId) {
+        List<QuizAttempt> allAttempts = readQuizAttempts();
+        List<QuizAttempt> studentAttempts = new ArrayList<>();
+        
+        for (QuizAttempt attempt : allAttempts) {
+            if (studentId.equals(attempt.getStudentId())) {
+                studentAttempts.add(attempt);
+            }
+        }
+        return studentAttempts;
+    }
+
+    public List<QuizAttempt> getQuizAttemptsByQuiz(String quizId) {
+        List<QuizAttempt> allAttempts = readQuizAttempts();
+        List<QuizAttempt> quizAttempts = new ArrayList<>();
+        
+        for (QuizAttempt attempt : allAttempts) {
+            if (quizId.equals(attempt.getQuizId())) {
+                quizAttempts.add(attempt);
+            }
+        }
+        return quizAttempts;
+    }
+
+        public List<QuizAttempt> getQuizAttempts(String studentId, String quizId) {
+        List<QuizAttempt> allAttempts = readQuizAttempts();
+        List<QuizAttempt> result = new ArrayList<>();
+        
+        for (QuizAttempt attempt : allAttempts) {
+            if (studentId.equals(attempt.getStudentId()) && quizId.equals(attempt.getQuizId())) {
+                result.add(attempt);
+            }
+        }
+        return result;
+    }
+    public QuizAttempt findQuizAttemptById(String attemptId) {
+        List<QuizAttempt> attempts = readQuizAttempts();
+        for (QuizAttempt attempt : attempts) {
+            if (attemptId.equals(attempt.getAttemptId())) {
+                return attempt;
+            }
+        }
+        return null;
+    }
+
+    // ==== STUDENT B: COURSE/LESSON QUIZ METHODS ====
+    public boolean addQuizToLesson(String courseId, String lessonId, Quiz quiz) {
+        try {
+            List<Course> courses = readCourses();
+            
+            for (Course course : courses) {
+                if (courseId.equals(course.getCourseId())) {
+                    for (Lesson lesson : course.getLessons()) {
+                        if (lessonId.equals(lesson.getLessonId())) {
+                            lesson.setQuiz(quiz);
+                            writeCourses(courses);
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Quiz getQuizByLesson(String courseId, String lessonId) {
+        List<Course> courses = readCourses();
+        
+        for (Course course : courses) {
+            if (courseId.equals(course.getCourseId())) {
+                for (Lesson lesson : course.getLessons()) {
+                    if (lessonId.equals(lesson.getLessonId()) && lesson.getQuiz() != null) {
+                        return lesson.getQuiz();
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public boolean markLessonAsCompletedWithQuiz(String studentId, String courseId, String lessonId, boolean completed) {
+        try {
+            List<User> users = readUsers();
+            List<Course> courses = readCourses();
+
+            Student student = null;
+            for (User user : users) {
+                if (user instanceof Student && user.getUserId().equals(studentId)) {
+                    student = (Student) user;
+                    break;
+                }
+            }
+
+            if (student == null) {
+                return false;
+            }
+
+            // Update lesson completion in course
+            for (Course course : courses) {
+                if (courseId.equals(course.getCourseId())) {
+                    for (Lesson lesson : course.getLessons()) {
+                        if (lessonId.equals(lesson.getLessonId())) {
+                            lesson.setCompleted(completed);
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            // Also update student progress (existing method)
+            if (completed) {
+                student.completeLesson(courseId, lessonId);
+                updateStudentOverallProgress(student, courses);
+            }
+
+            writeUsers(users);
+            writeCourses(courses);
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
