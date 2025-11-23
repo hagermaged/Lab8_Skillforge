@@ -1,0 +1,230 @@
+[
+  {
+    "enrolledCourses": [
+      "C1",
+      "C2",
+      "C3",
+      "C5",
+      "C6",
+      "C8",
+      "C13"
+    ],
+    "progress": 55,
+    "courseProgress": {
+      "C1": [
+        "L1",
+        "L2"
+      ],
+      "C2": [
+        "L3"
+      ],
+      "C3": [
+        "L6"
+      ],
+      "C5": [
+        "L8",
+        "L9"
+      ],
+      "C6": [
+        "L11"
+      ],
+      "C8": [],
+      "C13": []
+    },
+    "username": "john_doe",
+    "email": "john@example.com",
+    "role": "student",
+    "userId": "U1",
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3"
+  },
+  {
+    "createdCourses": [
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C9"
+    ],
+    "username": "prof_smith",
+    "email": "prof@example.com",
+    "role": "instructor",
+    "userId": "U2",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+  },
+  {
+    "enrolledCourses": [
+      "C5",
+      "C7",
+      "C8",
+      "C10"
+    ],
+    "progress": 30,
+    "courseProgress": {
+      "C5": [
+        "L8"
+      ],
+      "C7": [
+        "L15"
+      ],
+      "C8": [],
+      "C10": [
+        "L19"
+      ]
+    },
+    "username": "jana",
+    "email": "jana@example.com",
+    "role": "student",
+    "userId": "U3",
+    "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3"
+  },
+  {
+    "createdCourses": [
+      "C5",
+      "C7",
+      "C10",
+      "C11"
+    ],
+    "username": "dr_wilson",
+    "email": "dr.wilson@university.edu",
+    "role": "instructor",
+    "userId": "U4",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+  },
+  {
+    "enrolledCourses": [
+      "C1",
+      "C5",
+      "C6",
+      "C8",
+      "C10"
+    ],
+    "progress": 45,
+    "courseProgress": {
+      "C1": [
+        "L1"
+      ],
+      "C5": [
+        "L8",
+        "L9"
+      ],
+      "C6": [
+        "L11",
+        "L12"
+      ],
+      "C8": [
+        "L17"
+      ],
+      "C10": []
+    },
+    "username": "sarah_connor",
+    "email": "sarah.connor@student.edu",
+    "role": "student",
+    "userId": "U5",
+    "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
+  },
+  {
+    "enrolledCourses": [
+      "C2",
+      "C3",
+      "C5",
+      "C6",
+      "C7",
+      "C9"
+    ],
+    "progress": 70,
+    "courseProgress": {
+      "C2": [
+        "L4",
+        "L5"
+      ],
+      "C3": [
+        "L6",
+        "L7"
+      ],
+      "C5": [
+        "L8"
+      ],
+      "C6": [
+        "L11",
+        "L12",
+        "L13"
+      ],
+      "C7": [
+        "L15",
+        "L16"
+      ],
+      "C9": [
+        "L21"
+      ]
+    },
+    "username": "mike_tech",
+    "email": "mike.tech@student.edu",
+    "role": "student",
+    "userId": "U6",
+    "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
+  },
+  {
+    "createdCourses": [
+      "C6",
+      "C8",
+      "C12"
+    ],
+    "username": "prof_jones",
+    "email": "jones@cs.department.edu",
+    "role": "instructor",
+    "userId": "U7",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+  },
+  {
+    "enrolledCourses": [
+      "C1",
+      "C3",
+      "C7",
+      "C9",
+      "C11"
+    ],
+    "progress": 38,
+    "courseProgress": {
+      "C1": [
+        "L1"
+      ],
+      "C3": [
+        "L6"
+      ],
+      "C7": [
+        "L15"
+      ],
+      "C9": [],
+      "C11": [
+        "L23"
+      ]
+    },
+    "username": "lisa_chen",
+    "email": "lisa.chen@student.edu",
+    "role": "student",
+    "userId": "U8",
+    "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
+  },
+  {
+    "createdCourses": [],
+    "username": "MariamAymen",
+    "email": "Mariam@gmail.com",
+    "role": "instructor",
+    "userId": "U9",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+  },
+  {
+    "enrolledCourses": [
+      "C9"
+    ],
+    "progress": 0,
+    "courseProgress": {
+      "C9": []
+    },
+    "username": "MariamAymen22",
+    "email": "mariam@yahoo.com",
+    "role": "student",
+    "userId": "U10",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+  }
+]

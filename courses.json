@@ -1,0 +1,418 @@
+[
+  {
+    "courseId": "C1",
+    "courseTitle": "Introduction to Java",
+    "courseDescription": "Learn basic Java programming",
+    "instructorId": "U2",
+    "status": "APPROVED",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L1",
+        "lessonTitle": "Java Basics",
+        "content": "Introduction to Java syntax",
+        "resources": [
+          "slide1.pdf"
+        ]
+      },
+      {
+        "lessonId": "L2",
+        "lessonTitle": "OOP",
+        "content": "Classes and objects",
+        "resources": []
+      },
+      {
+        "lessonId": "L3",
+        "lessonTitle": "Exception Handling",
+        "content": "Error handling in Java",
+        "resources": [
+          "exercise1.zip"
+        ]
+      }
+    ]
+  },
+  {
+    "courseId": "C2",
+    "courseTitle": "Advanced Algorithms",
+    "courseDescription": "Algorithm design and analysis",
+    "instructorId": "U2",
+    "status": "PENDING",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L4",
+        "lessonTitle": "Sorting Algorithms",
+        "content": "Bubble, merge, quick sort",
+        "resources": []
+      },
+      {
+        "lessonId": "L5",
+        "lessonTitle": "Graph Algorithms",
+        "content": "BFS, DFS, Dijkstra",
+        "resources": [
+          "graph_theory.pdf"
+        ]
+      }
+    ]
+  },
+  {
+    "courseId": "C3",
+    "courseTitle": "Web Development",
+    "courseDescription": "Full-stack web development",
+    "instructorId": "U2",
+    "status": "PENDING",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L6",
+        "lessonTitle": "HTML \u0026 CSS",
+        "content": "Web page structure and style",
+        "resources": []
+      },
+      {
+        "lessonId": "L7",
+        "lessonTitle": "JavaScript",
+        "content": "JS programming basics",
+        "resources": [
+          "js_tutorial.pdf"
+        ]
+      }
+    ]
+  },
+  {
+    "courseId": "C4",
+    "courseTitle": "Test Course",
+    "courseDescription": "This is a test course",
+    "instructorId": "U2",
+    "status": "PENDING",
+    "students": [],
+    "lessons": []
+  },
+  {
+    "courseId": "C5",
+    "courseTitle": "Database Systems",
+    "courseDescription": "Database design and SQL",
+    "instructorId": "U4",
+    "status": "PENDING",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L8",
+        "lessonTitle": "Relational DB",
+        "content": "Tables and relationships",
+        "resources": [
+          "db_concepts.pdf"
+        ]
+      },
+      {
+        "lessonId": "L9",
+        "lessonTitle": "SQL Fundamentals",
+        "content": "Basic SQL operations",
+        "resources": [
+          "sql_cheatsheet.pdf"
+        ]
+      },
+      {
+        "lessonId": "L10",
+        "lessonTitle": "Advanced SQL",
+        "content": "Joins and subqueries",
+        "resources": []
+      }
+    ]
+  },
+  {
+    "courseId": "C6",
+    "courseTitle": "Machine Learning",
+    "courseDescription": "ML algorithms and applications",
+    "instructorId": "U7",
+    "status": "PENDING",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L11",
+        "lessonTitle": "ML Introduction",
+        "content": "What is machine learning",
+        "resources": [
+          "ml_intro.pdf"
+        ]
+      },
+      {
+        "lessonId": "L12",
+        "lessonTitle": "Linear Regression",
+        "content": "Understanding regression",
+        "resources": []
+      },
+      {
+        "lessonId": "L13",
+        "lessonTitle": "Classification",
+        "content": "Decision trees and SVM",
+        "resources": [
+          "classification_algorithms.zip"
+        ]
+      },
+      {
+        "lessonId": "L14",
+        "lessonTitle": "Neural Networks",
+        "content": "Artificial neural networks",
+        "resources": []
+      }
+    ]
+  },
+  {
+    "courseId": "C7",
+    "courseTitle": "Mobile App Development",
+    "courseDescription": "iOS and Android apps",
+    "instructorId": "U4",
+    "status": "PENDING",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L15",
+        "lessonTitle": "Mobile Basics",
+        "content": "Mobile platforms overview",
+        "resources": []
+      },
+      {
+        "lessonId": "L16",
+        "lessonTitle": "UI Design",
+        "content": "Design for small screens",
+        "resources": [
+          "mobile_ui_guide.pdf"
+        ]
+      }
+    ]
+  },
+  {
+    "courseId": "C8",
+    "courseTitle": "Data Structures",
+    "courseDescription": "Fundamental data structures",
+    "instructorId": "U7",
+    "status": "PENDING",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L17",
+        "lessonTitle": "Arrays \u0026 Lists",
+        "content": "Linear data structures",
+        "resources": []
+      },
+      {
+        "lessonId": "L18",
+        "lessonTitle": "Trees \u0026 Graphs",
+        "content": "Non-linear data structures",
+        "resources": [
+          "trees_graphs.pdf"
+        ]
+      }
+    ]
+  },
+  {
+    "courseId": "C9",
+    "courseTitle": "Software Engineering",
+    "courseDescription": "Software development methodologies",
+    "instructorId": "U2",
+    "status": "APPROVED",
+    "students": [
+      {
+        "enrolledCourses": [
+          "C9"
+        ],
+        "progress": 0,
+        "courseProgress": {
+          "C9": []
+        },
+        "username": "MariamAymen22",
+        "email": "mariam@yahoo.com",
+        "role": "student",
+        "userId": "U10",
+        "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+      }
+    ],
+    "lessons": [
+      {
+        "lessonId": "L19",
+        "lessonTitle": "Agile Methodology",
+        "content": "Scrum and Kanban",
+        "resources": [
+          "agile_guide.pdf"
+        ]
+      },
+      {
+        "lessonId": "L20",
+        "lessonTitle": "Version Control",
+        "content": "Git and GitHub",
+        "resources": []
+      },
+      {
+        "lessonId": "L21",
+        "lessonTitle": "Testing",
+        "content": "Unit and integration testing",
+        "resources": [
+          "testing_framework.zip"
+        ]
+      }
+    ]
+  },
+  {
+    "courseId": "C10",
+    "courseTitle": "Cloud Computing",
+    "courseDescription": "Introduction to cloud platforms",
+    "instructorId": "U4",
+    "status": "PENDING",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L22",
+        "lessonTitle": "Cloud Basics",
+        "content": "What is cloud computing",
+        "resources": []
+      },
+      {
+        "lessonId": "L23",
+        "lessonTitle": "AWS Services",
+        "content": "Amazon Web Services overview",
+        "resources": [
+          "aws_services.pdf"
+        ]
+      },
+      {
+        "lessonId": "L24",
+        "lessonTitle": "Deployment",
+        "content": "Deploying applications to cloud",
+        "resources": []
+      }
+    ]
+  },
+  {
+    "courseId": "C11",
+    "courseTitle": "Cybersecurity Fundamentals",
+    "courseDescription": "Introduction to cybersecurity",
+    "instructorId": "U4",
+    "status": "PENDING",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L25",
+        "lessonTitle": "Security Basics",
+        "content": "Cybersecurity principles",
+        "resources": [
+          "security_basics.pdf"
+        ]
+      },
+      {
+        "lessonId": "L26",
+        "lessonTitle": "Encryption",
+        "content": "Cryptography fundamentals",
+        "resources": []
+      },
+      {
+        "lessonId": "L27",
+        "lessonTitle": "Network Security",
+        "content": "Protecting networks",
+        "resources": [
+          "network_security.zip"
+        ]
+      }
+    ]
+  },
+  {
+    "courseId": "C12",
+    "courseTitle": "Artificial Intelligence",
+    "courseDescription": "AI concepts and applications",
+    "instructorId": "U7",
+    "status": "PENDING",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L28",
+        "lessonTitle": "AI Introduction",
+        "content": "What is artificial intelligence",
+        "resources": []
+      },
+      {
+        "lessonId": "L29",
+        "lessonTitle": "Search Algorithms",
+        "content": "AI search techniques",
+        "resources": [
+          "ai_search.pdf"
+        ]
+      },
+      {
+        "lessonId": "L30",
+        "lessonTitle": "Natural Language Processing",
+        "content": "Text processing with AI",
+        "resources": []
+      }
+    ]
+  },
+  {
+    "courseId": "C13",
+    "courseTitle": "Signals",
+    "courseDescription": "Signals and Systems",
+    "instructorId": "U2",
+    "status": "PENDING",
+    "students": [
+      {
+        "enrolledCourses": [
+          "C1",
+          "C2",
+          "C3",
+          "C5",
+          "C6",
+          "C8",
+          "C13"
+        ],
+        "progress": 55,
+        "courseProgress": {
+          "C1": [
+            "L1",
+            "L2"
+          ],
+          "C2": [
+            "L3"
+          ],
+          "C3": [
+            "L6"
+          ],
+          "C5": [
+            "L8",
+            "L9"
+          ],
+          "C6": [
+            "L11"
+          ],
+          "C8": [],
+          "C13": []
+        },
+        "username": "john_doe",
+        "email": "john@example.com",
+        "role": "student",
+        "userId": "U1",
+        "passwordHash": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3"
+      }
+    ],
+    "lessons": [
+      {
+        "lessonId": "L31",
+        "lessonTitle": "lecture 1",
+        "content": "signals classification",
+        "resources": []
+      },
+      {
+        "lessonId": "L32",
+        "lessonTitle": "signals lec 2",
+        "content": "lecture 2",
+        "resources": []
+      }
+    ]
+  },
+  {
+    "courseId": "C14",
+    "courseTitle": "Security and Networking",
+    "courseDescription": "Description Test",
+    "instructorId": "U9",
+    "status": "PENDING",
+    "students": [],
+    "lessons": []
+  }
+]
