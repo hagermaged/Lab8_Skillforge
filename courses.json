@@ -108,6 +108,20 @@
         "role": "student",
         "userId": "U4",
         "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
+      },
+      {
+        "enrolledCourses": [
+          "C2"
+        ],
+        "progress": 0,
+        "courseProgress": {
+          "C2": []
+        },
+        "username": "hager",
+        "email": "hager@example.com",
+        "role": "student",
+        "userId": "U1",
+        "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
       }
     ],
     "lessons": [
@@ -155,7 +169,7 @@
           "passingScore": 15,
           "maxAttempts": 2
         },
-        "isCompleted": false
+        "isCompleted": true
       }
     ],
     "approvalStatus": "APPROVED",

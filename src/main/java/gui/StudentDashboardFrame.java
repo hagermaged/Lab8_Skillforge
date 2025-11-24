@@ -36,6 +36,7 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        quizDatabaseManager1 = new db.QuizDatabaseManager();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -43,6 +44,7 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
         viewEnrolledCoursesButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        viewMyCertificatesButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +102,17 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
             }
         });
 
+        viewMyCertificatesButton.setBackground(new java.awt.Color(230, 240, 250));
+        viewMyCertificatesButton.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        viewMyCertificatesButton.setForeground(new java.awt.Color(0, 30, 80));
+        viewMyCertificatesButton.setText("View My Certificates");
+        viewMyCertificatesButton.setFocusPainted(false);
+        viewMyCertificatesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewMyCertificatesButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -111,12 +124,14 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
                         .addGap(258, 258, 258)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(browseAllCoursesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(71, 71, 71)
-                            .addComponent(viewEnrolledCoursesButton))))
+                        .addComponent(viewMyCertificatesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(browseAllCoursesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addComponent(viewEnrolledCoursesButton)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(138, 138, 138)
@@ -135,7 +150,9 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
                 .addComponent(browseAllCoursesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(viewEnrolledCoursesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                .addGap(70, 70, 70)
+                .addComponent(viewMyCertificatesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,6 +208,12 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exitButtonActionPerformed
 
+    private void viewMyCertificatesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewMyCertificatesButtonActionPerformed
+        MyCertificatesFrame myCertificates = new MyCertificatesFrame(studentId, this);
+        myCertificates.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_viewMyCertificatesButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,6 +257,8 @@ public class StudentDashboardFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logOutButton;
+    private db.QuizDatabaseManager quizDatabaseManager1;
     private javax.swing.JButton viewEnrolledCoursesButton;
+    private javax.swing.JButton viewMyCertificatesButton;
     // End of variables declaration//GEN-END:variables
 }
