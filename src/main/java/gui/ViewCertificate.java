@@ -10,6 +10,7 @@ package gui;
  */
 import model.*;
 import service.*;
+import db.*;
 
 public class ViewCertificate extends javax.swing.JFrame {
 
@@ -429,8 +430,15 @@ public class ViewCertificate extends javax.swing.JFrame {
 
     private void downloadAsPDF() {
         try {
-            CertificateService certService = new CertificateService();
+            if (certificate == null) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "No certificate data to download!",
+                        "Error",
+                        javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
+            // Show file chooser
             javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
             fileChooser.setSelectedFile(new java.io.File(
                     "Certificate_" + certificate.getCertificateId() + ".pdf"
@@ -440,17 +448,26 @@ public class ViewCertificate extends javax.swing.JFrame {
             if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
                 java.io.File file = fileChooser.getSelectedFile();
 
+                // Ensure .pdf extension
                 if (!file.getName().toLowerCase().endsWith(".pdf")) {
                     file = new java.io.File(file.getAbsolutePath() + ".pdf");
                 }
 
-                boolean success = certService.generatePDFCertificate(certificate, file.getAbsolutePath());
+                // Use the new PdfGenerator class
+                db.PdfGenerator pdfGenerator = new db.PdfGenerator();
+                boolean success = pdfGenerator.generateProfessionalPDFCertificate(certificate, file.getAbsolutePath());
 
                 if (success) {
                     javax.swing.JOptionPane.showMessageDialog(this,
-                            "PDF Certificate downloaded successfully!",
+                            "PDF Certificate downloaded successfully!\n"
+                            + "Saved as: " + file.getName(),
                             "Download Complete",
                             javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                            "Failed to generate PDF certificate.",
+                            "PDF Generation Error",
+                            javax.swing.JOptionPane.ERROR_MESSAGE);
                 }
             }
 
@@ -459,6 +476,7 @@ public class ViewCertificate extends javax.swing.JFrame {
                     "Error downloading PDF: " + ex.getMessage(),
                     "Download Error",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         }
     }
 
