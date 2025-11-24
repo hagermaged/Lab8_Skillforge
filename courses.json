@@ -4,7 +4,26 @@
     "courseTitle": "Java Programming",
     "courseDescription": "Learn Java from basics to advanced",
     "instructorId": "U2",
-    "students": [],
+    "students": [
+      {
+        "enrolledCourses": [
+          "COURSE001",
+          "C1"
+        ],
+        "progress": 20,
+        "courseProgress": {
+          "COURSE001": [
+            "LESSON001"
+          ],
+          "C1": []
+        },
+        "username": "Test Student",
+        "email": "student@test.com",
+        "role": "student",
+        "userId": "STUDENT001",
+        "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
+      }
+    ],
     "lessons": [
       {
         "lessonId": "L1",
@@ -29,9 +48,9 @@
                 "A. 4",
                 "B. 5",
                 "C. 6",
-                "D. 7"
+                "D. 8"
               ],
-              "correctOptionIndex": 0,
+              "correctOptionIndex": 3,
               "points": 10
             },
             {
@@ -88,7 +107,7 @@
         "email": "alice@student.com",
         "role": "student",
         "userId": "U4",
-        "passwordHash": "learn123"
+        "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
       }
     ],
     "lessons": [
@@ -110,51 +129,159 @@
           "questions": [
             {
               "questionId": "QU1",
-              "questionText": "How many primitive data types in Java?",
+              "questionText": "What does HTML stand for?",
               "options": [
-                "A. 4",
-                "B. 5",
-                "C. 6",
-                "D. 7"
+                "A. Hyper Text Markup Language",
+                "B. High Tech Modern Language",
+                "C. Hyper Transfer Markup Language",
+                "D. Home Tool Markup Language"
               ],
               "correctOptionIndex": 0,
               "points": 10
             },
             {
               "questionId": "QU2",
-              "questionText": "What is the blueprint for objects in Java?",
+              "questionText": "Which CSS property is used to change text color?",
               "options": [
-                "A. class",
-                "B. interface",
-                "C. object",
-                "D. method"
+                "A. text-color",
+                "B. font-color",
+                "C. color",
+                "D. text-style"
               ],
-              "correctOptionIndex": 0,
-              "points": 10
-            },
-            {
-              "questionId": "QU3",
-              "questionText": "Which component executes Java bytecode?",
-              "options": [
-                "A. JVM",
-                "B. JRE",
-                "C. JDK",
-                "D. JAR"
-              ],
-              "correctOptionIndex": 0,
+              "correctOptionIndex": 2,
               "points": 10
             }
           ],
-          "passingScore": 20,
-          "maxAttempts": 3
+          "passingScore": 15,
+          "maxAttempts": 2
         },
-        "isCompleted": true
+        "isCompleted": false
       }
     ],
     "approvalStatus": "APPROVED",
     "adminReviewerId": "U1",
     "reviewNotes": "Good course structure",
     "reviewDate": "2025-11-23T22:01:04.613920100"
+  },
+  {
+    "courseId": "C4",
+    "courseTitle": "Python for Beginners",
+    "courseDescription": "Learn Python programming from scratch",
+    "instructorId": "INSTRUCTOR001",
+    "students": [
+      {
+        "enrolledCourses": [
+          "COURSE001",
+          "C1",
+          "C4"
+        ],
+        "progress": 50,
+        "courseProgress": {
+          "COURSE001": [
+            "LESSON001"
+          ],
+          "C1": [
+            "L2"
+          ],
+          "C4": []
+        },
+        "username": "Test Student",
+        "email": "student@test.com",
+        "role": "student",
+        "userId": "STUDENT001",
+        "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
+      }
+    ],
+    "lessons": [
+      {
+        "lessonId": "L5",
+        "lessonTitle": "Python Basics",
+        "content": "Introduction to Python syntax and variables...",
+        "resources": [
+          "python_cheatsheet.pdf",
+          "code_examples.zip"
+        ],
+        "isCompleted": false
+      },
+      {
+        "lessonId": "L6",
+        "lessonTitle": "Functions and Modules",
+        "content": "Learn how to create functions and use modules in Python...",
+        "resources": [
+          "functions_guide.pdf"
+        ],
+        "quiz": {
+          "quizId": "Q3",
+          "lessonId": "L6",
+          "questions": [
+            {
+              "questionId": "QU1",
+              "questionText": "Which keyword is used to define a function in Python?",
+              "options": [
+                "A. function",
+                "B. def",
+                "C. define",
+                "D. func"
+              ],
+              "correctOptionIndex": 1,
+              "points": 10
+            },
+            {
+              "questionId": "QU2",
+              "questionText": "What is the output of: print(type([]))",
+              "options": [
+                "A. \u003cclass \u0027list\u0027\u003e",
+                "B. \u003cclass \u0027array\u0027\u003e",
+                "C. \u003cclass \u0027tuple\u0027\u003e",
+                "D. \u003cclass \u0027dict\u0027\u003e"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            },
+            {
+              "questionId": "QU3",
+              "questionText": "How do you import a module in Python?",
+              "options": [
+                "A. include module_name",
+                "B. import module_name",
+                "C. require module_name",
+                "D. using module_name"
+              ],
+              "correctOptionIndex": 1,
+              "points": 10
+            },
+            {
+              "questionId": "QU4",
+              "questionText": "Which data type is mutable in Python?",
+              "options": [
+                "A. tuple",
+                "B. string",
+                "C. list",
+                "D. int"
+              ],
+              "correctOptionIndex": 2,
+              "points": 10
+            }
+          ],
+          "passingScore": 25,
+          "maxAttempts": 3
+        },
+        "isCompleted": true
+      },
+      {
+        "lessonId": "L7",
+        "lessonTitle": "Object-Oriented Programming in Python",
+        "content": "Learn classes, objects, and inheritance in Python...",
+        "resources": [
+          "oop_guide.pdf"
+        ],
+        "isCompleted": false
+      }
+    ],
+    "approvalStatus": "APPROVED",
+    "adminReviewerId": "U1",
+    "reviewNotes": "Well-structured Python course for beginners",
+    "reviewDate": "2025-11-23T22:01:04.615615600"
   },
   {
     "courseId": "C3",

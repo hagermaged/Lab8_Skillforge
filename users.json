@@ -1,52 +1,43 @@
 [
   {
-    "username": "admin1",
-    "email": "admin@skillforge.com",
-    "role": "admin",
-    "userId": "U1",
-    "passwordHash": "admin123"
-  },
-  {
-    "createdCourses": [],
-    "username": "prof_john",
-    "email": "john@university.com",
-    "role": "instructor",
-    "userId": "U2",
-    "passwordHash": "teach123"
-  },
-  {
-    "createdCourses": [],
-    "username": "dr_smith",
-    "email": "smith@university.com",
-    "role": "instructor",
-    "userId": "U3",
-    "passwordHash": "teach456"
-  },
-  {
     "enrolledCourses": [
-      "C2"
+      "COURSE001",
+      "C1",
+      "C4"
     ],
-    "progress": 100,
+    "progress": 40,
     "courseProgress": {
-      "C2": [
-        "L4",
-        "L3"
+      "COURSE001": [
+        "LESSON001"
+      ],
+      "C1": [
+        "L2"
+      ],
+      "C4": [
+        "L6"
       ]
     },
-    "username": "alice_student",
-    "email": "alice@student.com",
+    "username": "Test Student",
+    "email": "student@test.com",
     "role": "student",
-    "userId": "U4",
-    "passwordHash": "learn123"
+    "userId": "STUDENT001",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
   },
   {
-    "enrolledCourses": [],
-    "progress": 0,
-    "courseProgress": {},
-    "username": "bob_learner",
-    "email": "bob@student.com",
-    "role": "student",
-    "userId": "U5",
-    "passwordHash": "learn456"
+    "createdCourses": [
+      "COURSE001"
+    ],
+    "username": "Test Instructor",
+    "email": "instructor@test.com",
+    "role": "instructor",
+    "userId": "INSTRUCTOR001",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
+  },
+  {
+    "username": "Admin User",
+    "email": "admin@test.com",
+    "role": "admin",
+    "userId": "ADMIN001",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
   }
 ]
