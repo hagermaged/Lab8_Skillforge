@@ -312,7 +312,7 @@ public class ViewCertificate extends javax.swing.JFrame {
     }//GEN-LAST:event_returnToMenuButtonActionPerformed
 
     private void downloadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadButtonActionPerformed
-        String[] options = {"Download as Image", "Download as JSON", "Cancel"};
+        String[] options = {"Download as PDF", "Download as JSON", "Cancel"};
         int choice = javax.swing.JOptionPane.showOptionDialog(this,
                 "Choose download format:",
                 "Download Certificate",
@@ -323,7 +323,7 @@ public class ViewCertificate extends javax.swing.JFrame {
                 options[0]);
 
         if (choice == 0) {
-            downloadAsImage();
+            downloadAsPDF();
         } else if (choice == 1) {
             downloadAsJSON();
         }
@@ -424,6 +424,41 @@ public class ViewCertificate extends javax.swing.JFrame {
                     "Download Error",
                     javax.swing.JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
+        }
+    }
+
+    private void downloadAsPDF() {
+        try {
+            CertificateService certService = new CertificateService();
+
+            javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+            fileChooser.setSelectedFile(new java.io.File(
+                    "Certificate_" + certificate.getCertificateId() + ".pdf"
+            ));
+
+            int result = fileChooser.showSaveDialog(this);
+            if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
+                java.io.File file = fileChooser.getSelectedFile();
+
+                if (!file.getName().toLowerCase().endsWith(".pdf")) {
+                    file = new java.io.File(file.getAbsolutePath() + ".pdf");
+                }
+
+                boolean success = certService.generatePDFCertificate(certificate, file.getAbsolutePath());
+
+                if (success) {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                            "PDF Certificate downloaded successfully!",
+                            "Download Complete",
+                            javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+
+        } catch (Exception ex) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error downloading PDF: " + ex.getMessage(),
+                    "Download Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }
 
