@@ -43,43 +43,96 @@
           "questions": [
             {
               "questionId": "QU1",
-              "questionText": "How many primitive data types in Java?",
+              "questionText": "Which of the following is NOT a pillar of OOP?",
               "options": [
-                "A. 4",
-                "B. 5",
-                "C. 6",
-                "D. 8"
+                "A. Inheritance",
+                "B. Polymorphism",
+                "C. Compilation",
+                "D. Encapsulation"
               ],
-              "correctOptionIndex": 3,
+              "correctOptionIndex": 2,
               "points": 10
             },
             {
               "questionId": "QU2",
-              "questionText": "What is the blueprint for objects in Java?",
+              "questionText": "In UML, what symbol represents a class?",
               "options": [
-                "A. class",
-                "B. interface",
-                "C. object",
-                "D. method"
+                "A. Circle",
+                "B. Rectangle",
+                "C. Diamond",
+                "D. Triangle"
               ],
-              "correctOptionIndex": 0,
+              "correctOptionIndex": 1,
               "points": 10
             },
             {
               "questionId": "QU3",
-              "questionText": "Which component executes Java bytecode?",
+              "questionText": "Which Java keyword is used for inheritance?",
               "options": [
-                "A. JVM",
-                "B. JRE",
-                "C. JDK",
-                "D. JAR"
+                "A. implements",
+                "B. extends",
+                "C. inherits",
+                "D. super"
               ],
-              "correctOptionIndex": 0,
+              "correctOptionIndex": 1,
               "points": 10
             }
           ],
           "passingScore": 20,
           "maxAttempts": 3
+        },
+        "isCompleted": false
+      },
+      {
+        "lessonId": "L8",
+        "lessonTitle": "Java Collections Framework",
+        "content": "Learn about ArrayList, HashMap, and other collection classes...",
+        "resources": [
+          "collections_cheatsheet.pdf"
+        ],
+        "quiz": {
+          "quizId": "Q4",
+          "lessonId": "L8",
+          "questions": [
+            {
+              "questionId": "QU1",
+              "questionText": "In UML class diagrams, what does a solid arrow with a hollow head represent?",
+              "options": [
+                "A. Association",
+                "B. Dependency",
+                "C. Inheritance",
+                "D. Aggregation"
+              ],
+              "correctOptionIndex": 2,
+              "points": 10
+            },
+            {
+              "questionId": "QU2",
+              "questionText": "Which OOP concept allows a class to have multiple methods with the same name?",
+              "options": [
+                "A. Inheritance",
+                "B. Encapsulation",
+                "C. Polymorphism",
+                "D. Abstraction"
+              ],
+              "correctOptionIndex": 2,
+              "points": 10
+            },
+            {
+              "questionId": "QU3",
+              "questionText": "What is the purpose of the \u0027private\u0027 access modifier in Java?",
+              "options": [
+                "A. Access from any class",
+                "B. Access only within the same package",
+                "C. Access only within the same class",
+                "D. Access from subclasses only"
+              ],
+              "correctOptionIndex": 2,
+              "points": 10
+            }
+          ],
+          "passingScore": 20,
+          "maxAttempts": 2
         },
         "isCompleted": false
       }
@@ -143,26 +196,26 @@
           "questions": [
             {
               "questionId": "QU1",
-              "questionText": "What does HTML stand for?",
+              "questionText": "Which UML relationship represents \u0027has-a\u0027 relationship?",
               "options": [
-                "A. Hyper Text Markup Language",
-                "B. High Tech Modern Language",
-                "C. Hyper Transfer Markup Language",
-                "D. Home Tool Markup Language"
+                "A. Inheritance",
+                "B. Association",
+                "C. Dependency",
+                "D. Realization"
               ],
-              "correctOptionIndex": 0,
+              "correctOptionIndex": 1,
               "points": 10
             },
             {
               "questionId": "QU2",
-              "questionText": "Which CSS property is used to change text color?",
+              "questionText": "What is method overriding in Java OOP?",
               "options": [
-                "A. text-color",
-                "B. font-color",
-                "C. color",
-                "D. text-style"
+                "A. Creating multiple methods with same name",
+                "B. Redefining a method in subclass",
+                "C. Hiding method implementation",
+                "D. Making a method static"
               ],
-              "correctOptionIndex": 2,
+              "correctOptionIndex": 1,
               "points": 10
             }
           ],
@@ -170,6 +223,59 @@
           "maxAttempts": 2
         },
         "isCompleted": true
+      },
+      {
+        "lessonId": "L9",
+        "lessonTitle": "JavaScript Fundamentals",
+        "content": "Learn variables, functions, and DOM manipulation in JavaScript...",
+        "resources": [
+          "js_basics.pdf"
+        ],
+        "quiz": {
+          "quizId": "Q5",
+          "lessonId": "L9",
+          "questions": [
+            {
+              "questionId": "QU1",
+              "questionText": "In UML, what does a dashed arrow represent?",
+              "options": [
+                "A. Inheritance",
+                "B. Association",
+                "C. Dependency",
+                "D. Composition"
+              ],
+              "correctOptionIndex": 2,
+              "points": 10
+            },
+            {
+              "questionId": "QU2",
+              "questionText": "Which Java keyword is used to prevent method overriding?",
+              "options": [
+                "A. static",
+                "B. final",
+                "C. private",
+                "D. sealed"
+              ],
+              "correctOptionIndex": 1,
+              "points": 10
+            },
+            {
+              "questionId": "QU3",
+              "questionText": "What is abstraction in OOP?",
+              "options": [
+                "A. Hiding implementation details",
+                "B. Reusing code through inheritance",
+                "C. Binding data with methods",
+                "D. Creating multiple forms"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            }
+          ],
+          "passingScore": 20,
+          "maxAttempts": 3
+        },
+        "isCompleted": false
       }
     ],
     "approvalStatus": "APPROVED",
@@ -215,6 +321,38 @@
           "python_cheatsheet.pdf",
           "code_examples.zip"
         ],
+        "quiz": {
+          "quizId": "Q6",
+          "lessonId": "L5",
+          "questions": [
+            {
+              "questionId": "QU1",
+              "questionText": "What is encapsulation in Java OOP?",
+              "options": [
+                "A. Hiding data using access modifiers",
+                "B. Inheriting from parent class",
+                "C. Creating multiple methods",
+                "D. Implementing interfaces"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            },
+            {
+              "questionId": "QU2",
+              "questionText": "In UML, what symbol represents an interface?",
+              "options": [
+                "A. Rectangle with \u003c\u003cinterface\u003e\u003e",
+                "B. Circle",
+                "C. Diamond",
+                "D. Triangle"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            }
+          ],
+          "passingScore": 15,
+          "maxAttempts": 2
+        },
         "isCompleted": false
       },
       {
@@ -230,50 +368,50 @@
           "questions": [
             {
               "questionId": "QU1",
-              "questionText": "Which keyword is used to define a function in Python?",
+              "questionText": "Which UML relationship is strongest?",
               "options": [
-                "A. function",
-                "B. def",
-                "C. define",
-                "D. func"
+                "A. Association",
+                "B. Dependency",
+                "C. Composition",
+                "D. Aggregation"
               ],
-              "correctOptionIndex": 1,
+              "correctOptionIndex": 2,
               "points": 10
             },
             {
               "questionId": "QU2",
-              "questionText": "What is the output of: print(type([]))",
+              "questionText": "What is the \u0027super\u0027 keyword used for in Java?",
               "options": [
-                "A. \u003cclass \u0027list\u0027\u003e",
-                "B. \u003cclass \u0027array\u0027\u003e",
-                "C. \u003cclass \u0027tuple\u0027\u003e",
-                "D. \u003cclass \u0027dict\u0027\u003e"
+                "A. Call superclass constructor/method",
+                "B. Create super class",
+                "C. Define super interface",
+                "D. Import super package"
               ],
               "correctOptionIndex": 0,
               "points": 10
             },
             {
               "questionId": "QU3",
-              "questionText": "How do you import a module in Python?",
+              "questionText": "In UML, what does multiplicity represent?",
               "options": [
-                "A. include module_name",
-                "B. import module_name",
-                "C. require module_name",
-                "D. using module_name"
+                "A. Number of objects in relationship",
+                "B. Method parameters",
+                "C. Class hierarchy depth",
+                "D. Interface implementations"
               ],
-              "correctOptionIndex": 1,
+              "correctOptionIndex": 0,
               "points": 10
             },
             {
               "questionId": "QU4",
-              "questionText": "Which data type is mutable in Python?",
+              "questionText": "Which is an example of runtime polymorphism?",
               "options": [
-                "A. tuple",
-                "B. string",
-                "C. list",
-                "D. int"
+                "A. Method overloading",
+                "B. Method overriding",
+                "C. Constructor chaining",
+                "D. Static methods"
               ],
-              "correctOptionIndex": 2,
+              "correctOptionIndex": 1,
               "points": 10
             }
           ],
@@ -303,10 +441,157 @@
     "courseDescription": "Advanced data structures course",
     "instructorId": "U2",
     "students": [],
-    "lessons": [],
+    "lessons": [
+      {
+        "lessonId": "L12",
+        "lessonTitle": "Trees",
+        "content": "BST,AVL",
+        "resources": [],
+        "quiz": {
+          "quizId": "quiz_C3_L12",
+          "lessonId": "L12",
+          "questions": [
+            {
+              "questionId": "q_1764072698750",
+              "questionText": "what is the key property of BSTs?",
+              "options": [
+                "each node can have more than two children",
+                "Left child\u003cparent\u003cright chlid",
+                "it must be a complete binary tree",
+                "all nodes have the same depth"
+              ],
+              "correctOptionIndex": 1,
+              "points": 10
+            },
+            {
+              "questionId": "q_1764072817364",
+              "questionText": "in which traversal of BST we get the nodes in sorted order",
+              "options": [
+                "pre-order",
+                "in-order",
+                "post-order",
+                "level-order"
+              ],
+              "correctOptionIndex": 1,
+              "points": 10
+            }
+          ],
+          "passingScore": 70,
+          "maxAttempts": 3
+        },
+        "isCompleted": false
+      }
+    ],
     "approvalStatus": "REJECTED",
     "adminReviewerId": "U1",
     "reviewNotes": "Course content needs improvement",
+    "reviewDate": "2025-11-23T22:01:04.615615600"
+  },
+  {
+    "courseId": "C5",
+    "courseTitle": "Database Management",
+    "courseDescription": "Learn SQL and database design principles",
+    "instructorId": "INSTRUCTOR001",
+    "students": [],
+    "lessons": [
+      {
+        "lessonId": "L10",
+        "lessonTitle": "SQL Fundamentals",
+        "content": "Learn basic SQL queries and commands...",
+        "resources": [
+          "sql_cheatsheet.pdf"
+        ],
+        "quiz": {
+          "quizId": "Q7",
+          "lessonId": "L10",
+          "questions": [
+            {
+              "questionId": "QU1",
+              "questionText": "What is the difference between abstract class and interface in Java?",
+              "options": [
+                "A. Abstract class can have implemented methods",
+                "B. Interface can have constructors",
+                "C. Abstract class supports multiple inheritance",
+                "D. Interface can have instance variables"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            },
+            {
+              "questionId": "QU2",
+              "questionText": "In UML, what does a hollow diamond represent?",
+              "options": [
+                "A. Composition",
+                "B. Inheritance",
+                "C. Aggregation",
+                "D. Dependency"
+              ],
+              "correctOptionIndex": 2,
+              "points": 10
+            },
+            {
+              "questionId": "QU3",
+              "questionText": "Which access modifier provides the widest accessibility?",
+              "options": [
+                "A. private",
+                "B. protected",
+                "C. default",
+                "D. public"
+              ],
+              "correctOptionIndex": 3,
+              "points": 10
+            }
+          ],
+          "passingScore": 20,
+          "maxAttempts": 3
+        },
+        "isCompleted": false
+      },
+      {
+        "lessonId": "L11",
+        "lessonTitle": "Database Normalization",
+        "content": "Learn about database normalization forms and best practices...",
+        "resources": [
+          "normalization_guide.pdf"
+        ],
+        "quiz": {
+          "quizId": "Q8",
+          "lessonId": "L11",
+          "questions": [
+            {
+              "questionId": "QU1",
+              "questionText": "What is method overloading in Java?",
+              "options": [
+                "A. Same method name, different parameters",
+                "B. Same method name in subclass",
+                "C. Same method with different return type",
+                "D. Same method with different access modifier"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            },
+            {
+              "questionId": "QU2",
+              "questionText": "In UML class diagrams, what are the three compartments?",
+              "options": [
+                "A. Name, Attributes, Methods",
+                "B. Class, Object, Interface",
+                "C. Public, Private, Protected",
+                "D. Inheritance, Composition, Association"
+              ],
+              "correctOptionIndex": 0,
+              "points": 10
+            }
+          ],
+          "passingScore": 15,
+          "maxAttempts": 2
+        },
+        "isCompleted": false
+      }
+    ],
+    "approvalStatus": "APPROVED",
+    "adminReviewerId": "U1",
+    "reviewNotes": "Comprehensive database course with practical quizzes",
     "reviewDate": "2025-11-23T22:01:04.615615600"
   }
 ]

@@ -18,7 +18,12 @@ public class Question {
     private int correctOptionIndex; // 0-based index (0, 1, 2, 3)
     private int points;
   public Question() {
+        this.questionId = "";
+        this.questionText = "";
         this.options = new ArrayList<>();
+        this.correctOptionIndex = 0;
+        this.points = 10;
+        
     }
   
     public Question(String questionId, String questionText, List<String> options, int correctOptionIndex, int points) {
