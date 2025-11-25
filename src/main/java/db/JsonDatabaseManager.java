@@ -263,7 +263,7 @@ public class JsonDatabaseManager {
         return null;
     }
 
-    // ==== STUDENT B: COURSE/LESSON QUIZ METHODS ====
+    
     public boolean addQuizToLesson(String courseId, String lessonId, Quiz quiz) {
         try {
             List<Course> courses = readCourses();

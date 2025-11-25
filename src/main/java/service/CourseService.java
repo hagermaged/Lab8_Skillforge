@@ -250,4 +250,67 @@ public class CourseService {
                 .findFirst()
                 .orElse(null);
     }
+    // Add these methods to your existing CourseService class
+
+public boolean addQuizToLesson(String courseId, String lessonId, Quiz quiz) {
+    try {
+        // Find course in the instance list, not from database
+        Course course = courses.stream()
+                .filter(c -> courseId.equals(c.getCourseId()))
+                .findFirst()
+                .orElse(null);
+        
+        if (course != null) {
+            for (Lesson lesson : course.getLessons()) {
+                if (lessonId.equals(lesson.getLessonId())) {
+                    lesson.setQuiz(quiz);
+                    // Write the updated courses list to file
+                    db.writeCourses(courses);
+                    return true;
+                }
+            }
+        }
+        return false;
+    } catch (Exception e) {
+        System.err.println("Error adding quiz to lesson: " + e.getMessage());
+        e.printStackTrace();
+        return false;
+    }
+}
+
+public boolean removeQuizFromLesson(String courseId, String lessonId) {
+    try {
+        Course course = getCourseById(courseId);
+        if (course != null) {
+            for (Lesson lesson : course.getLessons()) {
+                if (lessonId.equals(lesson.getLessonId())) {
+                    lesson.setQuiz(null);
+                    db.writeCourses(courses);
+                    return true;
+                }
+            }
+        }
+        return false;
+    } catch (Exception e) {
+        System.err.println("Error removing quiz from lesson: " + e.getMessage());
+        e.printStackTrace();
+        return false;
+    }
+}
+
+public Quiz getQuizForLesson(String courseId, String lessonId) {
+     Course course = courses.stream()
+            .filter(c -> courseId.equals(c.getCourseId()))
+            .findFirst()
+            .orElse(null);
+    
+    if (course != null) {
+        for (Lesson lesson : course.getLessons()) {
+            if (lessonId.equals(lesson.getLessonId())) {
+                return lesson.getQuiz();
+            }
+        }
+    }
+    return null;
+}
 }

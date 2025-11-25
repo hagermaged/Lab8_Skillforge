@@ -39,5 +39,63 @@
     "role": "admin",
     "userId": "ADMIN001",
     "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
+  },
+  {
+    "enrolledCourses": [
+      "C2"
+    ],
+    "progress": 100,
+    "courseProgress": {
+      "C2": [
+        "L3",
+        "L4"
+      ]
+    },
+    "username": "hager",
+    "email": "hager@example.com",
+    "role": "student",
+    "userId": "U1",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+  },
+  {
+    "enrolledCourses": [
+      "C1",
+      "C2"
+    ],
+    "progress": 30,
+    "courseProgress": {
+      "C1": [
+        "L1"
+      ],
+      "C2": [
+        "L3"
+      ]
+    },
+    "username": "john_doe",
+    "email": "john.doe@student.com",
+    "role": "student",
+    "userId": "STUDENT002",
+    "passwordHash": "15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225"
+  },
+  {
+    "createdCourses": [
+      "C5"
+    ],
+    "username": "demo_instructor",
+    "email": "instructor@demo.com",
+    "role": "instructor",
+    "userId": "INSTRUCTOR002",
+    "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
+  },
+  {
+    "createdCourses": [
+      "C1",
+      "C3"
+    ],
+    "username": "prof_john",
+    "email": "john@instructor.com",
+    "role": "instructor",
+    "userId": "U2",
+    "passwordHash": "c1437a55f6e93b7049c4064af1b0920974e383a435283f5d0b0496ee4a8a47b5"
   }
 ]

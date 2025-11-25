@@ -333,6 +333,11 @@ public class InstructorDashboardFrame extends javax.swing.JFrame {
         });
     }
 
+    public void refreshCourseDetails() {
+    loadCoursesToTable(); 
+    System.out.println("Course details refreshed after quiz addition");
+    }
+    
     public void loadCoursesToTable() {
         String currentInstructorId = getCurrentInstructorId();
 
