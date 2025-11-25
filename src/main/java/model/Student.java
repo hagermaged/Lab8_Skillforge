@@ -105,4 +105,23 @@ public class Student extends User {
     public List<String> getCertificateIds() {
         return certificateIds;
     }
+
+    public String getFirstName() {
+        // Assuming username is in format "firstName lastName" or you have separate fields
+        // If you have separate firstName/lastName fields, use those instead
+        if (getUsername() != null && getUsername().contains(" ")) {
+            return getUsername().split(" ")[0];
+        }
+        return getUsername();
+    }
+
+    public String getLastName() {
+        if (getUsername() != null && getUsername().contains(" ")) {
+            String[] parts = getUsername().split(" ");
+            return parts.length > 1 ? parts[1] : "";
+        }
+        return "";
+    }
+    
+ 
 }

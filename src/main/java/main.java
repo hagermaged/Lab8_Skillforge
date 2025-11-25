@@ -1,12 +1,12 @@
-import javax.swing.SwingUtilities;
-
-import gui.AnalyticsFrame;
-
+import gui.LoginFrame;
+/**
+ * Main class to start the Learning Management System
+ */
 public class main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            AnalyticsFrame frame = new AnalyticsFrame();
-            frame.setVisible(true);
+        // Start the application with the Login Frame
+        java.awt.EventQueue.invokeLater(() -> {
+            new LoginFrame().setVisible(true);
         });
     }
 }

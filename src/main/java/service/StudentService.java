@@ -2,17 +2,23 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.*;
-import db.*;
+
+import db.JsonDatabaseManager;
+import model.Course;
+import model.Lesson;
+import model.Quiz;
+import model.QuizAttempt;
+import model.Student;
+import model.User;
 
 public class StudentService {
     
     private JsonDatabaseManager jsonDb;
-    private QuizService quizService ;
+    private QuizService quizService;
     
     public StudentService() {
         this.jsonDb = new JsonDatabaseManager();
-        this.quizService =new QuizService();
+        this.quizService = new QuizService();
     }
     
     public List<Course> browseAllCourses() {
@@ -29,7 +35,7 @@ public class StudentService {
         return approvedCourses;
     }
     
-     public List<Course> getEnrolledCourses(Student s) {
+    public List<Course> getEnrolledCourses(Student s) {
         List<Course> all = browseAllCourses(); // Now uses filtered approved courses
         List<Course> result = new ArrayList<>();
         
@@ -41,6 +47,7 @@ public class StudentService {
         
         return result;
     }
+    
     public boolean enrollInCourse(Student s, Course c) {
         if(!s.getEnrolledCourses().contains(c.getCourseId())) {
             s.enrollInCourse(c.getCourseId());
@@ -87,7 +94,8 @@ public class StudentService {
         s.completeLesson(c.getCourseId(), l.getLessonId());
         return jsonDb.markLessonAsCompleted(s.getUserId(), c.getCourseId(), l.getLessonId());
     }
-        public boolean completeQuiz(Student student, Course course, Lesson lesson, QuizAttempt quizAttempt) {
+    
+    public boolean completeQuiz(Student student, Course course, Lesson lesson, QuizAttempt quizAttempt) {
         if (!student.getEnrolledCourses().contains(course.getCourseId())) {
             return false;
         }
@@ -104,53 +112,51 @@ public class StudentService {
         
         return false;
     }
-        public Quiz getQuizForLesson(Course course, Lesson lesson) {
-    if (course == null || lesson == null) {
-        return null;
+    
+    public Quiz getQuizForLesson(Course course, Lesson lesson) {
+        if (course == null || lesson == null) {
+            return null;
+        }
+        
+        // Return the quiz directly from the lesson
+        return lesson.hasQuiz() ? lesson.getQuiz() : null;
     }
     
-    // Check if student is enrolled in this course
-   // if (!student.getEnrolledCourses().contains(course.getCourseId())) {
-    //     return null;
-     //}
-    
-    // Return the quiz directly from the lesson
-    return lesson.hasQuiz() ? lesson.getQuiz() : null;
-}
-        public boolean canAccessQuiz(Student student, Course course, Lesson lesson) {
-    if (!student.getEnrolledCourses().contains(course.getCourseId())) {
-        return false;
+    public boolean canAccessQuiz(Student student, Course course, Lesson lesson) {
+        if (!student.getEnrolledCourses().contains(course.getCourseId())) {
+            return false;
+        }
+        
+        // Check if lesson has a quiz
+        Quiz quiz = getQuizForLesson(course, lesson);
+        if (quiz == null) {
+            return false;
+        }
+        
+        // Check if student can take the quiz (attempt limits)
+        return quizService.canTakeQuiz(student.getUserId(), quiz.getQuizId(), quiz.getMaxAttempts());
     }
     
-    // Check if lesson has a quiz
-    Quiz quiz = getQuizForLesson(course, lesson);
-    if (quiz == null) {
-        return false;
+    public QuizAttempt submitQuiz(Student student, Course course, Lesson lesson, List<Integer> answers) {
+        if (!canAccessQuiz(student, course, lesson)) {
+            return null;
+        }
+        
+        Quiz quiz = getQuizForLesson(course, lesson);
+        if (quiz == null) {
+            return null;
+        }
+        
+        // Submit quiz using QuizService
+        QuizAttempt attempt = quizService.submitQuiz(quiz, answers, student.getUserId());
+        
+        // Auto-complete lesson if quiz passed
+        if (attempt.isPassed()) {
+            completeQuiz(student, course, lesson, attempt);
+        }
+        
+        return attempt;
     }
-    
-    // Check if student can take the quiz (attempt limits)
-    return quizService.canTakeQuiz(student.getUserId(), quiz.getQuizId(), quiz.getMaxAttempts());
-}
-        public QuizAttempt submitQuiz(Student student, Course course, Lesson lesson, List<Integer> answers) {
-    if (!canAccessQuiz(student, course, lesson)) {
-        return null;
-    }
-    
-    Quiz quiz = getQuizForLesson(course, lesson);
-    if (quiz == null) {
-        return null;
-    }
-    
-    // Submit quiz using QuizService
-    QuizAttempt attempt = quizService.submitQuiz(quiz, answers, student.getUserId());
-    
-    // Auto-complete lesson if quiz passed
-    if (attempt.isPassed()) {
-        completeQuiz(student, course, lesson, attempt);
-    }
-    
-    return attempt;
-}
     
     public int getCourseProgressPercentage(Student s, Course c) {
         if (!s.getEnrolledCourses().contains(c.getCourseId())) {
@@ -191,5 +197,43 @@ public class StudentService {
             }
         }
         return remaining;
+    }
+
+    // FIXED METHOD: Filter only Student objects from all users
+    public List<Student> getAllStudents() {
+        JsonDatabaseManager dbManager = new JsonDatabaseManager();
+        List<User> allUsers = dbManager.readUsers();
+        List<Student> students = new ArrayList<>();
+        
+        for (User user : allUsers) {
+            if (user instanceof Student) {
+                students.add((Student) user);
+            }
+        }
+        return students;
+    }
+    
+    // Additional method to get students by course
+    public List<Student> getStudentsByCourse(String courseId) {
+        List<Student> allStudents = getAllStudents();
+        List<Student> courseStudents = new ArrayList<>();
+        
+        for (Student student : allStudents) {
+            if (student.getEnrolledCourses() != null && student.getEnrolledCourses().contains(courseId)) {
+                courseStudents.add(student);
+            }
+        }
+        return courseStudents;
+    }
+    
+    // Additional method to get student by ID
+    public Student getStudentById(String studentId) {
+        List<Student> students = getAllStudents();
+        for (Student student : students) {
+            if (student.getUserId().equals(studentId)) {
+                return student;
+            }
+        }
+        return null;
     }
 }

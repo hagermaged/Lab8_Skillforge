@@ -593,13 +593,5 @@
     "adminReviewerId": "U1",
     "reviewNotes": "Comprehensive database course with practical quizzes",
     "reviewDate": "2025-11-23T22:01:04.615615600"
-  },
-  {
-    "courseId": "C6",
-    "courseTitle": "AI",
-    "courseDescription": "AI and machine learning",
-    "students": [],
-    "lessons": [],
-    "approvalStatus": "PENDING"
   }
 ]

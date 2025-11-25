@@ -73,6 +73,7 @@ public class InstructorDashboardFrame extends javax.swing.JFrame {
         editCourseButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        analyticsButton = new javax.swing.JButton(); // New button
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(252, 250, 247));
@@ -159,6 +160,17 @@ public class InstructorDashboardFrame extends javax.swing.JFrame {
             }
         });
 
+        analyticsButton.setBackground(new java.awt.Color(230, 240, 250)); // New button
+        analyticsButton.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        analyticsButton.setForeground(new java.awt.Color(0, 30, 80));
+        analyticsButton.setText("View Analytics");
+        analyticsButton.setFocusPainted(false);
+        analyticsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                analyticsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,6 +186,7 @@ public class InstructorDashboardFrame extends javax.swing.JFrame {
                     .addComponent(createCourseButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteCourseButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editCourseButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(analyticsButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE) // New button
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(logOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
@@ -198,11 +211,13 @@ public class InstructorDashboardFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(createCourseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
+                        .addGap(18, 18, 18) // Reduced gap
+                        .addComponent(analyticsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE) // New button
+                        .addGap(18, 18, 18) // Reduced gap
                         .addComponent(deleteCourseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(65, 65, 65)
+                        .addGap(18, 18, 18) // Reduced gap
                         .addComponent(editCourseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
+                        .addGap(18, 18, 18) // Reduced gap
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(logOutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -218,7 +233,6 @@ public class InstructorDashboardFrame extends javax.swing.JFrame {
         CreateCourseFrame createFrame = new CreateCourseFrame(currentInstructorId, this);
         createFrame.setVisible(true);
         this.setVisible(false);
-
     }//GEN-LAST:event_createCourseButtonActionPerformed
 
     private void deleteCourseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCourseButtonActionPerformed
@@ -297,6 +311,13 @@ public class InstructorDashboardFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_exitButtonActionPerformed
 
+    private void analyticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyticsButtonActionPerformed
+        // Open Analytics Frame
+        AnalyticsFrame analyticsFrame = new AnalyticsFrame(currentInstructorId);
+        analyticsFrame.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_analyticsButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -334,8 +355,8 @@ public class InstructorDashboardFrame extends javax.swing.JFrame {
     }
 
     public void refreshCourseDetails() {
-    loadCoursesToTable(); 
-    System.out.println("Course details refreshed after quiz addition");
+        loadCoursesToTable(); 
+        System.out.println("Course details refreshed after quiz addition");
     }
     
     public void loadCoursesToTable() {
@@ -398,6 +419,7 @@ public class InstructorDashboardFrame extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton analyticsButton; // New button
     private javax.swing.JTable coursesTable;
     private javax.swing.JButton createCourseButton;
     private javax.swing.JButton deleteCourseButton;
@@ -409,5 +431,4 @@ public class InstructorDashboardFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton logOutButton;
     // End of variables declaration//GEN-END:variables
-
 }

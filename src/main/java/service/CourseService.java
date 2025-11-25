@@ -8,9 +8,15 @@ package service;
  *
  * @author Hajer1
  */
-import db.*;
-import model.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import db.IdGenerator;
+import db.JsonDatabaseManager;
+import model.Course;
+import model.Lesson;
+import model.Quiz;
+import model.Student;
 
 public class CourseService {
 
@@ -313,4 +319,15 @@ public Quiz getQuizForLesson(String courseId, String lessonId) {
     }
     return null;
 }
+public List<Course> getCoursesByInstructor(String instructorId) {
+    List<Course> allCourses = getAllCourses();
+    List<Course> instructorCourses = new ArrayList<>();
+    for (Course course : allCourses) {
+        if (course.getInstructorId() != null && course.getInstructorId().equals(instructorId)) {
+            instructorCourses.add(course);
+        }
+    }
+    return instructorCourses;
+}
+
 }
