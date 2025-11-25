@@ -310,6 +310,20 @@
         "role": "student",
         "userId": "STUDENT001",
         "passwordHash": "ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f"
+      },
+      {
+        "enrolledCourses": [
+          "C4"
+        ],
+        "progress": 0,
+        "courseProgress": {
+          "C4": []
+        },
+        "username": "basmala",
+        "email": "basmala@student.com",
+        "role": "student",
+        "userId": "U3",
+        "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
       }
     ],
     "lessons": [
@@ -353,7 +367,7 @@
           "passingScore": 15,
           "maxAttempts": 2
         },
-        "isCompleted": false
+        "isCompleted": true
       },
       {
         "lessonId": "L6",
@@ -492,7 +506,24 @@
     "courseTitle": "Database Management",
     "courseDescription": "Learn SQL and database design principles",
     "instructorId": "INSTRUCTOR002",
-    "students": [],
+    "students": [
+      {
+        "enrolledCourses": [
+          "C4",
+          "C5"
+        ],
+        "progress": 0,
+        "courseProgress": {
+          "C4": [],
+          "C5": []
+        },
+        "username": "basmala",
+        "email": "basmala@student.com",
+        "role": "student",
+        "userId": "U3",
+        "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+      }
+    ],
     "lessons": [
       {
         "lessonId": "L10",

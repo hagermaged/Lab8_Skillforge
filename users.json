@@ -97,5 +97,24 @@
     "role": "instructor",
     "userId": "U2",
     "passwordHash": "c1437a55f6e93b7049c4064af1b0920974e383a435283f5d0b0496ee4a8a47b5"
+  },
+  {
+    "enrolledCourses": [
+      "C4",
+      "C5"
+    ],
+    "progress": 40,
+    "courseProgress": {
+      "C4": [
+        "L5",
+        "L6"
+      ],
+      "C5": []
+    },
+    "username": "basmala",
+    "email": "basmala@student.com",
+    "role": "student",
+    "userId": "U3",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
   }
 ]
