@@ -491,7 +491,7 @@
     "courseId": "C5",
     "courseTitle": "Database Management",
     "courseDescription": "Learn SQL and database design principles",
-    "instructorId": "INSTRUCTOR001",
+    "instructorId": "INSTRUCTOR002",
     "students": [],
     "lessons": [
       {
@@ -502,7 +502,7 @@
           "sql_cheatsheet.pdf"
         ],
         "quiz": {
-          "quizId": "Q7",
+          "quizId": "quiz_C5_L10",
           "lessonId": "L10",
           "questions": [
             {
@@ -530,15 +530,15 @@
               "points": 10
             },
             {
-              "questionId": "QU3",
-              "questionText": "Which access modifier provides the widest accessibility?",
+              "questionId": "q_1764080290736",
+              "questionText": "how is inheritance represented in UML",
               "options": [
-                "A. private",
-                "B. protected",
-                "C. default",
-                "D. public"
+                "Solid line with Hollow Arrowhead",
+                "Solid Line with Filled Arrowhead",
+                "Dotted Line with Hollow Arrowhead",
+                "Dotted Line with Filled Arrowhead"
               ],
-              "correctOptionIndex": 3,
+              "correctOptionIndex": 0,
               "points": 10
             }
           ],

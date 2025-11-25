@@ -47,7 +47,7 @@ public class Quiz {
     }
 
     public List<Question> getQuestions() {
-        return questions;
+           return questions != null ? questions : new ArrayList<>();
     }
 
     public void setQuestions(List<Question> questions) {

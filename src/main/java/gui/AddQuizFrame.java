@@ -24,7 +24,7 @@ public class AddQuizFrame extends javax.swing.JFrame {
     /**
      * Creates new form AddQuizFrame
      */
-    public AddQuizFrame(String instructorId, String courseId, String lessonId,InstructorDashboardFrame parent) {
+    public AddQuizFrame(String instructorId, String courseId, String lessonId,InstructorDashboardFrame parent,Quiz existingQuiz) {
         initComponents();
        this.courseId = courseId;
         this.lessonId = lessonId;
@@ -32,9 +32,34 @@ public class AddQuizFrame extends javax.swing.JFrame {
         this.parent = parent;
         this.courseService = new CourseService();
         this.questions = new ArrayList<>();
+            System.out.println("DEBUG: AddQuizFrame constructor called");
+    System.out.println("DEBUG: existingQuiz = " + existingQuiz);
+    
+    if (existingQuiz != null) {
+        // EDIT MODE: Load existing quiz data
+        System.out.println("DEBUG: EDIT MODE - Loading existing quiz");
+        this.questions = new ArrayList<>(existingQuiz.getQuestions());
+        jTextField1.setText(String.valueOf(existingQuiz.getPassingScore()));
+        jTextField2.setText(String.valueOf(existingQuiz.getMaxAttempts()));
+        setTitle("Edit Quiz for Lesson");
+        
+        System.out.println("DEBUG: Loaded " + this.questions.size() + " questions");
+        for (int i = 0; i < this.questions.size(); i++) {
+            Question q = this.questions.get(i);
+            System.out.println("DEBUG: Question " + i + ": " + q.getQuestionText());
+        }
+    } else {
+        // ADD MODE: Start with empty quiz
+        System.out.println("DEBUG: ADD MODE - Starting with empty quiz");
+        this.questions = new ArrayList<>();
+        setTitle("Add Quiz to Lesson");
+    }
         this.questionListModel = new DefaultListModel<>();
          jList1.setModel(questionListModel); 
-         setLocationRelativeTo(parent); 
+         setLocationRelativeTo(parent);
+         updateQuestionList();
+    
+    System.out.println("DEBUG: After updateQuestionList(), list model has " + questionListModel.size() + " items");
     }
 
     /**
@@ -233,42 +258,43 @@ public class AddQuizFrame extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-                if (questions.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please add at least one question to the quiz.");
+    if (questions.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please add at least one question to the quiz.");
+        return;
+    }
+    
+    try {
+        int passingScore = Integer.parseInt(jTextField1.getText());
+        int maxAttempts = Integer.parseInt(jTextField2.getText());
+        
+        if (passingScore < 0 || passingScore > 100) {
+            JOptionPane.showMessageDialog(this, "Passing score must be between 0 and 100.");
             return;
         }
         
-        try {
-            int passingScore = Integer.parseInt(jTextField1.getText());
-            int maxAttempts = Integer.parseInt(jTextField2.getText());
+        // Generate quiz ID
+        String quizId = "quiz_" + courseId + "_" + lessonId;
+        
+        // Create quiz
+        Quiz quiz = new Quiz(quizId, lessonId, new ArrayList<>(questions), passingScore, maxAttempts);
+        
+        // Save quiz to lesson
+        boolean success = courseService.addQuizToLesson(courseId, lessonId, quiz);
+        
+        if (success) {
             
-            if (passingScore < 0 || passingScore > 100) {
-                JOptionPane.showMessageDialog(this, "Passing score must be between 0 and 100.");
-                return;
+            JOptionPane.showMessageDialog(this, "Quiz saved successfully!");
+            dispose();
+            if (parent != null) {
+                parent.refreshCourseDetails();
             }
-            
-            // Generate quiz ID
-            String quizId = "quiz_" + courseId + "_" + lessonId;
-            
-            // Create quiz
-            Quiz quiz = new Quiz(quizId, lessonId, new ArrayList<>(questions), passingScore, maxAttempts);
-            
-            // Save quiz to lesson
-            boolean success = courseService.addQuizToLesson(courseId, lessonId, quiz);
-            
-            if (success) {
-                JOptionPane.showMessageDialog(this, "Quiz saved successfully!");
-                dispose();
-                if (parent != null) {
-                    parent.refreshCourseDetails();
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Failed to save quiz.");
-            }
-            
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Please enter valid numbers for passing score and max attempts.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Failed to save quiz.");
         }
+        
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Please enter valid numbers for passing score and max attempts.");
+    }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -289,13 +315,30 @@ public class AddQuizFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-     private void updateQuestionList() {
-        questionListModel.clear();
-        for (int i = 0; i < questions.size(); i++) {
-            Question q = questions.get(i);
-            questionListModel.addElement((i + 1) + ". " + q.getQuestionText() + " (" + q.getPoints() + " points)");
+private void updateQuestionList() {
+    if (questionListModel == null) {
+        System.out.println("DEBUG: questionListModel is null!");
+        return;
+    }
+    
+    questionListModel.clear();
+    System.out.println("DEBUG: Updating question list with " + questions.size() + " questions");
+    
+    for (int i = 0; i < questions.size(); i++) {
+        Question q = questions.get(i);
+        if (q != null) {
+            String displayText = (i + 1) + ". " + q.getQuestionText() + " (" + q.getPoints() + " points)";
+            questionListModel.addElement(displayText);
+            System.out.println("DEBUG: Added to list: " + displayText);
+        } else {
+            System.out.println("DEBUG: Question at index " + i + " is null!");
         }
     }
+    
+    // Refresh the JList to show the updated data
+    jList1.repaint();
+    System.out.println("DEBUG: List update complete, model now has " + questionListModel.size() + " items");
+}
     /**
      * @param args the command line arguments
      */
@@ -327,7 +370,7 @@ public class AddQuizFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 InstructorDashboardFrame instructor = new InstructorDashboardFrame();
-                new AddQuizFrame("","","",instructor).setVisible(true);
+                new AddQuizFrame("","","",instructor,null).setVisible(true);
             }
         });
     }
