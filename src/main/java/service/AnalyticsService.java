@@ -12,12 +12,6 @@ import model.Quiz;
 import model.QuizAttempt;
 import model.Student;
 
-/**
- * AnalyticsService (Student C)
- *
- * Calculates analytics using only lists and loops (no HashMaps).
- * Uses JsonDatabaseManager/QuizDatabaseManager methods already present in your project.
- */
 public class AnalyticsService {
     private final QuizDatabaseManager quizDb;
     private final JsonDatabaseManager jsonDb;
