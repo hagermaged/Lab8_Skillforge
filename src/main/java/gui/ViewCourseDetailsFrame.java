@@ -238,79 +238,128 @@ public class ViewCourseDetailsFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_returnToMenuButtonActionPerformed
 
     private void markLessonAsCompletedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markLessonAsCompletedButtonActionPerformed
+                                                          
+    int selectedRow = lessonsTable.getSelectedRow();
+    if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(this,
+                "Please select a lesson to mark as completed.",
+                "No Lesson Selected",
+                JOptionPane.WARNING_MESSAGE);
+        return;
+    }
 
-        int selectedRow = lessonsTable.getSelectedRow();
-        if (selectedRow == -1) {
+    try {
+        String lessonId = lessonsTable.getValueAt(selectedRow, 1).toString();
+        String currentStatus = lessonsTable.getValueAt(selectedRow, 3).toString();
+
+        // Check if already completed
+        if ("Yes".equals(currentStatus)) {
             JOptionPane.showMessageDialog(this,
-                    "Please select a lesson to mark as completed.",
-                    "No Lesson Selected",
-                    JOptionPane.WARNING_MESSAGE);
+                    "This lesson is already marked as completed!",
+                    "Already Completed",
+                    JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
-        try {
-            String lessonId = lessonsTable.getValueAt(selectedRow, 1).toString(); // Lesson ID is in column 1
-            String currentStatus = lessonsTable.getValueAt(selectedRow, 3).toString(); // Status is in column 3
+        Lesson selectedLesson = null;
+        for (Lesson lesson : course.getLessons()) {
+            if (lesson.getLessonId().equals(lessonId)) {
+                selectedLesson = lesson;
+                break;
+            }
+        }
 
-            // Check if already completed
-            if ("Yes".equals(currentStatus)) {
-                JOptionPane.showMessageDialog(this,
-                        "This lesson is already marked as completed!",
-                        "Already Completed",
-                        JOptionPane.INFORMATION_MESSAGE);
+        if (selectedLesson == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Could not find the selected lesson.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // check quiz completion first
+        if (selectedLesson.hasQuiz()) {
+            QuizService quizService = new QuizService();
+            String quizId = selectedLesson.getQuiz().getQuizId();
+            
+            // Check if student passed this quiz
+            boolean passedQuiz = quizService.hasPassedQuiz(studentId, quizId, selectedLesson.getQuiz().getPassingScore());
+            
+            if (!passedQuiz) {
+                // Check if student attempted but failed
+                int bestScore = quizService.getBestScore(studentId, quizId);
+                boolean hasAttempts = quizService.canTakeQuiz(studentId, quizId, selectedLesson.getQuiz().getMaxAttempts());
+                
+                if (bestScore > 0) {
+                    // Student attempted but didn't pass
+                    JOptionPane.showMessageDialog(this,
+                            "You need to pass the quiz first!\n" +
+                            "Your best score: " + bestScore + "/" + selectedLesson.getQuiz().getTotalPoints() + "\n" +
+                            "Passing score: " + selectedLesson.getQuiz().getPassingScore() + "\n" +
+                            (hasAttempts ? "You can retake the quiz." : "No attempts remaining."),
+                            "Quiz Not Passed",
+                            JOptionPane.WARNING_MESSAGE);
+                } else {
+                    // Student hasn't taken the quiz
+                    JOptionPane.showMessageDialog(this,
+                            "You need to complete the quiz first to mark this lesson as completed!\n" +
+                            "Please take the quiz from the 'Take Quiz' button.",
+                            "Quiz Required",
+                            JOptionPane.INFORMATION_MESSAGE);
+                }
                 return;
             }
+        }
+        
+        authService = new AuthService();
+        Student student = (Student) authService.getUserById(studentId);
 
-            Lesson selectedLesson = null;
-            for (Lesson lesson : course.getLessons()) {
-                if (lesson.getLessonId().equals(lessonId)) {
-                    selectedLesson = lesson;
-                    break;
+        if (student == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Could not find student information.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        boolean success = studentService.completeLesson(student, course, selectedLesson);
+
+        if (success) {
+            JOptionPane.showMessageDialog(this,
+                    "Lesson marked as completed successfully!",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+            loadLessonsToTable();
+
+            //check if student has completed all lessons -> earn a certificate
+            CertificateService certService = new CertificateService();
+            if (certService.isStudentEligibleForCertificate(studentId, course.getCourseId())) {
+                Certificate certificate = certService.generateCertificate(studentId, course.getCourseId());
+                if (certificate != null) {
+                    JOptionPane.showMessageDialog(this,
+                            "CONGRATULATIONS! \n" +
+                            "You've completed all lessons and earned a certificate for:\n" +
+                            course.getCourseTitle() + "\n\n" +
+                            "Certificate ID: " + certificate.getCertificateId(),
+                            "Certificate Earned!",
+                            JOptionPane.INFORMATION_MESSAGE);
                 }
             }
 
-            if (selectedLesson == null) {
-                JOptionPane.showMessageDialog(this,
-                        "Could not find the selected lesson.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            authService = new AuthService();
-            Student student = (Student) authService.getUserById(studentId);
-
-            if (student == null) {
-                JOptionPane.showMessageDialog(this,
-                        "Could not find student information.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            boolean success = studentService.completeLesson(student, course, selectedLesson);
-
-            if (success) {
-                JOptionPane.showMessageDialog(this,
-                        "Lesson marked as completed successfully!",
-                        "Success",
-                        JOptionPane.INFORMATION_MESSAGE);
-                loadLessonsToTable();
-
-            } else {
-                JOptionPane.showMessageDialog(this,
-                        "Failed to mark lesson as completed. Please make sure you're enrolled in this course.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-
-        } catch (Exception ex) {
+        } else {
             JOptionPane.showMessageDialog(this,
-                    "An error occurred: " + ex.getMessage(),
+                    "Failed to mark lesson as completed. Please make sure you're enrolled in this course.",
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
         }
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this,
+                "An error occurred: " + ex.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+        ex.printStackTrace();
+    }
     }//GEN-LAST:event_markLessonAsCompletedButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
