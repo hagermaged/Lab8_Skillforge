@@ -1,4 +1,3 @@
-
 import javax.swing.SwingUtilities;
 
 import gui.AnalyticsFrame;
