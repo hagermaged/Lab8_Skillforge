@@ -99,6 +99,7 @@
     "passwordHash": "c1437a55f6e93b7049c4064af1b0920974e383a435283f5d0b0496ee4a8a47b5"
   },
   {
+<<<<<<< Updated upstream
     "enrolledCourses": [
       "C4",
       "C5"
@@ -116,5 +117,21 @@
     "role": "student",
     "userId": "U3",
     "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+=======
+    "createdCourses": [],
+    "username": "jana",
+    "email": "jana@example.com",
+    "role": "instructor",
+    "userId": "U3",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+  },
+  {
+    "createdCourses": [],
+    "username": "basmala",
+    "email": "basmala@instructor.com",
+    "role": "instructor",
+    "userId": "U4",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
+>>>>>>> Stashed changes
   }
 ]
